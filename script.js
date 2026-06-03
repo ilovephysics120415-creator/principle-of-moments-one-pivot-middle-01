@@ -589,8 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let leftMomentDir = forceDirection === 1 ? 'Anticlockwise' : 'Clockwise';
     let rightMomentDir = forceDirection === 1 ? 'Clockwise' : 'Anticlockwise';
 
-    const leftTerm = `F_1 \\times d_1`;
-    const rightTerm = `F_2 \\times d_2`;
+    const leftTerm = `F₁ × d₁`;
+    const rightTerm = `F₂ × d₂`;
 
     workingHTML += `
       <div class="working-step">
@@ -624,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="working-step">
           <span class="step-num">Step 3</span>
           <div class="step-details">
-            Substitute the known values ($d_1 = ${d1.toFixed(1)}\\text{ m}$, $F_2 = ${f2}\\text{ N}$, $d_2 = ${d2.toFixed(1)}\\text{ m}$) into the equilibrium equation:
+            Substitute the known values (d₁ = ${d1.toFixed(1)} m, F₂ = ${f2} N, d₂ = ${d2.toFixed(1)} m) into the equilibrium equation:
             <br>
             <span class="formula-highlight">F₁ × ${d1.toFixed(1)} m = ${f2} N × ${d2.toFixed(1)} m</span>
           </div>
@@ -645,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="working-step">
           <span class="step-num">Step 3</span>
           <div class="step-details">
-            Substitute the known values ($F_1 = ${f1}\\text{ N}$, $F_2 = ${f2}\\text{ N}$, $d_2 = ${d2.toFixed(1)}\\text{ m}$) into the equilibrium equation:
+            Substitute the known values (F₁ = ${f1} N, F₂ = ${f2} N, d₂ = ${d2.toFixed(1)} m) into the equilibrium equation:
             <br>
             <span class="formula-highlight">${f1} N × d₁ = ${f2} N × ${d2.toFixed(1)} m</span>
           </div>
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="working-step">
           <span class="step-num">Step 3</span>
           <div class="step-details">
-            Substitute the known values ($F_1 = ${f1}\\text{ N}$, $d_1 = ${d1.toFixed(1)}\\text{ m}$, $d_2 = ${d2.toFixed(1)}\\text{ m}$) into the equilibrium equation:
+            Substitute the known values (F₁ = ${f1} N, d₁ = ${d1.toFixed(1)} m, d₂ = ${d2.toFixed(1)} m) into the equilibrium equation:
             <br>
             <span class="formula-highlight">${f1} N × ${d1.toFixed(1)} m = F₂ × ${d2.toFixed(1)} m</span>
           </div>
@@ -687,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="working-step">
           <span class="step-num">Step 3</span>
           <div class="step-details">
-            Substitute the known values ($F_1 = ${f1}\\text{ N}$, $d_1 = ${d1.toFixed(1)}\\text{ m}$, $F_2 = ${f2}\\text{ N}$) into the equilibrium equation:
+            Substitute the known values (F₁ = ${f1} N, d₁ = ${d1.toFixed(1)} m, F₂ = ${f2} N) into the equilibrium equation:
             <br>
             <span class="formula-highlight">${f1} N × ${d1.toFixed(1)} m = ${f2} N × d₂</span>
           </div>
