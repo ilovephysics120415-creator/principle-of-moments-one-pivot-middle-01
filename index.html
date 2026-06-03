@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principle of Moments (1 Pivot Middle - 2 Forces) | Physics 6091</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for Premium Look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="glow-container">
+    <div class="glow-circle gc1"></div>
+    <div class="glow-circle gc2"></div>
+  </div>
+
+  <main class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="badge">Syllabus 6091 • Sec Physics</div>
+      <h1>Principle of Moments</h1>
+      <p class="subtitle">1 Pivot in the Middle • 2 Opposing Forces</p>
+    </header>
+
+    <!-- Test Mode Notification Banner -->
+    <div id="testModeBanner" class="test-banner hidden">
+      <i class="fa-solid fa-brain-circuit fa-beat"></i>
+      <span>Test Mode Active! Find the hidden variable to balance the moments.</span>
+    </div>
+
+    <!-- Sliders Configuration Panel -->
+    <section class="control-panel glass">
+      <div class="panel-header">
+        <h2><i class="fa-solid fa-sliders"></i> Configuration</h2>
+        <span id="balanceBadge" class="balance-badge balanced"><i class="fa-solid fa-scale-balanced"></i> Balanced</span>
+      </div>
+
+      <div class="sliders-grid single-section">
+        <div class="slider-group unified-group">
+          <div class="slider-control" id="control-f1">
+            <div class="slider-info">
+              <label for="f1Range"><i class="fa-solid fa-vector-square neon-blue-icon"></i> Force F₁</label>
+              <div class="value-display-wrapper">
+                <span class="value-display f1-color" id="f1Val">10 N</span>
+                <button class="reveal-btn hidden" id="reveal-f1" title="Reveal Answer"><i class="fa-solid fa-eye-slash"></i></button>
+              </div>
+            </div>
+            <input type="range" id="f1Range" min="1" max="20" step="1" value="10" class="slider-f1">
+          </div>
+
+          <div class="slider-control" id="control-d1">
+            <div class="slider-info">
+              <label for="d1Range"><i class="fa-solid fa-ruler-horizontal neon-blue-icon"></i> Distance d₁</label>
+              <div class="value-display-wrapper">
+                <span class="value-display f1-color" id="d1Val">0.5 m</span>
+                <button class="reveal-btn hidden" id="reveal-d1" title="Reveal Answer"><i class="fa-solid fa-eye-slash"></i></button>
+              </div>
+            </div>
+            <input type="range" id="d1Range" min="0.1" max="1.0" step="0.1" value="0.5" class="slider-d1">
+          </div>
+
+          <div class="slider-control" id="control-f2">
+            <div class="slider-info">
+              <label for="f2Range"><i class="fa-solid fa-vector-square neon-pink-icon"></i> Force F₂</label>
+              <div class="value-display-wrapper">
+                <span class="value-display f2-color" id="f2Val">10 N</span>
+                <button class="reveal-btn hidden" id="reveal-f2" title="Reveal Answer"><i class="fa-solid fa-eye-slash"></i></button>
+              </div>
+            </div>
+            <input type="range" id="f2Range" min="1" max="20" step="1" value="10" class="slider-f2">
+          </div>
+
+          <div class="slider-control" id="control-d2">
+            <div class="slider-info">
+              <label for="d2Range"><i class="fa-solid fa-ruler-horizontal neon-pink-icon"></i> Distance d₂</label>
+              <div class="value-display-wrapper">
+                <span class="value-display f2-color" id="d2Val">0.5 m</span>
+                <button class="reveal-btn hidden" id="reveal-d2" title="Reveal Answer"><i class="fa-solid fa-eye-slash"></i></button>
+              </div>
+            </div>
+            <input type="range" id="d2Range" min="0.1" max="1.0" step="0.1" value="0.5" class="slider-d2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Row -->
+      <div class="action-row">
+        <button id="btnRandom" class="btn btn-secondary">
+          <i class="fa-solid fa-shuffle"></i> Randomise & Balance
+        </button>
+        <button id="btnTest" class="btn btn-primary">
+          <i class="fa-solid fa-graduation-cap"></i> Test Mode
+        </button>
+        <button id="btnWorking" class="btn btn-accent hidden">
+          <i class="fa-solid fa-lightbulb"></i> Show Working
+        </button>
+      </div>
+    </section>
+
+    <!-- Canvas Animation Section -->
+    <section class="canvas-section glass">
+      <div class="canvas-header">
+        <div class="hud-item">
+          <span class="hud-label">Left Moment (F₁ × d₁)</span>
+          <span class="hud-value neon-blue" id="moment1Val">5.0 N m</span>
+        </div>
+        <div class="hud-item-middle">
+          <span class="shape-indicator" id="shapeDisplay">Shape: Straight Beam</span>
+        </div>
+        <div class="hud-item text-right">
+          <span class="hud-label">Right Moment (F₂ × d₂)</span>
+          <span class="hud-value neon-pink" id="moment2Val">5.0 N m</span>
+        </div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="physicsCanvas"></canvas>
+      </div>
+    </section>
+
+    <!-- Dynamic Working/Solution Box (Visible in Test Mode when 'Show Working' clicked) -->
+    <section id="workingPanel" class="working-panel glass hidden">
+      <div class="working-header">
+        <h3><i class="fa-solid fa-calculator"></i> Step-by-Step Working</h3>
+        <button id="btnCloseWorking" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="working-content" id="workingContent">
+        <!-- Rendered dynamically in JS -->
+      </div>
+    </section>
+
+    <!-- Syllabus Details Info Card -->
+    <footer class="info-footer glass">
+      <h3><i class="fa-solid fa-graduation-cap"></i> Physics 6091 syllabus check</h3>
+      <p>According to the <strong>Principle of Moments</strong>, when a body is in equilibrium (balanced), the sum of <strong>clockwise moments</strong> about a pivot is equal to the sum of <strong>anticlockwise moments</strong> about the same pivot.</p>
+      <div class="formula-box">
+        $$\text{Anticlockwise Moment} = \text{Clockwise Moment}$$
+        $$F_1 \times d_1 = F_2 \times d_2$$
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
